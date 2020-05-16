@@ -3,8 +3,6 @@
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
 
 namespace NewsApp.Droid
@@ -19,7 +17,11 @@ namespace NewsApp.Droid
 
             base.OnCreate(savedInstanceState);
 
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: false);
+
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            global::Xamarin.Forms.Forms.SetFlags("IndicatorView_Experimental");
+            global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
         }

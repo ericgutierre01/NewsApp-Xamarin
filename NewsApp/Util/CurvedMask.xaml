@@ -1,5 +1,30 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="NewsApp.Util.CurvedMask">
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewsApp.Util.CurvedMask"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             BackgroundColor="Transparent"
+	         HeightRequest="41"
+	         VerticalOptions="End">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style
+				x:Key="MaskImageStyle"
+				TargetType="ffimageloadingsvg:SvgCachedImage">
+                <Setter
+					Property="Aspect"
+					Value="Fill" />
+                <Setter
+					Property="ffimageloadingsvg:SvgCachedImage.Source"
+					Value="curved_mask.svg" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
     <ContentView.Content>
+        <Grid
+			RowSpacing="0"
+			x:Name="root" />
     </ContentView.Content>
 </ContentView>

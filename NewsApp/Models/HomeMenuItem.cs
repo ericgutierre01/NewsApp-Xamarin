@@ -4,15 +4,12 @@ using System.Text;
 
 namespace NewsApp.Models
 {
-    public enum MenuItemType
-    {
-        Browse,
-        About
-    }
     public class HomeMenuItem
     {
-        public MenuItemType Id { get; set; }
-
-        public string Title { get; set; }
+        public int menId { get; set; }
+        public string menTitulo { get; set; }
+        public string Imagen { get; set; }
+        public bool menIsHot { get; set; }
+        public int menEstado { get; set; }
     }
 }

@@ -1,22 +1,142 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="NewsApp.Views.MenuPage" Title="Menu">
-    <StackLayout VerticalOptions="FillAndExpand">
-        <ListView x:Name="ListViewMenu" HasUnevenRows="True">
-            <d:ListView.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Item 1</x:String>
-                    <x:String>Item 2</x:String>
-                </x:Array>
-            </d:ListView.ItemsSource>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="10">
-                            <Label Text="{Binding Title}" d:Text="{Binding .}" FontSize="20" />
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="NewsApp.Views.MenuPage"
+             Title="Menu"
+             xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:util="clr-namespace:NewsApp.Util"
+             Icon="{ StaticResource HamburguerIcon }">
+
+    <Grid>
+        <StackLayout Orientation="Vertical">
+            <Grid HorizontalOptions="Fill" 
+                  HeightRequest="220">
+                <Grid.RowDefinitions>
+                     <RowDefinition Height="15" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <BoxView BackgroundColor="{StaticResource NavigationPrimary}"
+                            Opacity="1"
+                            Grid.RowSpan="3"/>
+
+                <BoxView Color="White"
+                         Grid.Row="1"
+                         WidthRequest="120"
+                         HeightRequest="120"
+                         CornerRadius="{OnPlatform Android=260, iOS=58}"
+                         HorizontalOptions="Center" 
+                         VerticalOptions="Center"/>
+
+                <ffimageloading:CachedImage HorizontalOptions="Center" 
+                                            VerticalOptions="Center"
+                                            WidthRequest="110" 
+                                            HeightRequest="110"
+                                            Source="nodisponible"
+                                            DownsampleToViewSize="true"
+                                            Grid.Row="1"
+                                            x:Name="avatar_im">
+                    <ffimageloading:CachedImage.Transformations>
+                        <ffTransformations:RoundedTransformation Radius="240" />
+                    </ffimageloading:CachedImage.Transformations>
+                </ffimageloading:CachedImage> 
+
+                <Label x:Name="Nusuario_lb"
+                       Text="Bienvenidos"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       VerticalOptions="End"
+                       HorizontalOptions="Center"
+                       TextColor="White"
+                       Grid.Row="2"
+                       Margin="0,0,0,5"/>
+            </Grid>
+                
+            <ListView  x:Name="listMenu" 
+                       RowHeight="50" 
+                       SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <StackLayout Grid.Row="0"
+                                             Orientation="Horizontal"
+                                             Spacing="10"
+                                             Padding="20, 10, 0, 10">
+                                    <Label Text="{Binding Imagen}"
+                                           FontSize="18"
+                                           TextColor="Gray"
+                                           VerticalOptions="Center"
+                                           FontFamily="{StaticResource FontAwesomeSolid}"/>
+
+                                    <Label Text="{Binding menTitulo}"
+                                           FontSize="20"
+                                           TextColor="Gray"
+                                           VerticalOptions="Center"
+                                           LineBreakMode="TailTruncation"/>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
         </ListView>
-    </StackLayout>
+
+            <Grid Margin="5,0,10,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <BoxView Color="Black"
+                         Opacity="0.2"/>
+                <Label VerticalOptions="Start"
+                       HorizontalOptions="Start"
+                       TextColor="Black"
+                       Opacity="0.5"
+                       Margin="10,0,0,0"
+                       Text="Appeek's Developers."
+                       Grid.Row="1"/>
+                <Label x:Name="version_lb"
+                       VerticalOptions="Start"
+                       HorizontalOptions="End"
+                       TextColor="Black"
+                       Opacity="0.5"
+                       Grid.Row="1"
+                       Margin="0,0,10,0"/>
+            </Grid>
+        </StackLayout>
+
+        <Grid x:Name="sinNet_g">
+
+            <StackLayout VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="CenterAndExpand">
+                <Label HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       TextColor="Gray"
+                       FontSize="Title"
+                       Text="Sin Datos"/>
+                <Button BackgroundColor="transparent"
+                        Text="&#xf2f9;"
+                        FontSize="Title"
+			            FontFamily="{StaticResource FontAwesomeSolid}"
+                        Clicked="Recargar_Clicked"/>
+
+
+            </StackLayout>
+
+        </Grid>
+        
+        <util:ProgressIndicator x:Name="barr" 
+                                IsVisible="false"
+                                VerticalOptions="FillAndExpand" 
+                                HorizontalOptions="FillAndExpand"/>  
+    </Grid>
 </ContentPage>

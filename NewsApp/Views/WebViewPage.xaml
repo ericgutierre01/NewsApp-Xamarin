@@ -1,5 +1,30 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="NewsApp.Views.WebViewPage">
-    <ContentPage.Content>
-    </ContentPage.Content>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewsApp.Views.WebViewPage">
+        <Grid>
+            <WebView x:Name="webView"
+                     VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand"
+                     Navigated="webviewNavigated"
+                     Navigating="webviewNavigating"
+                     BackgroundColor="White"
+                     Margin="{OnPlatform Android='0,30,0,0', iOS='0,25,0,0'}"/>
+
+            <ProgressBar HorizontalOptions="FillAndExpand"
+                         x:Name="progress_pb"
+                         VerticalOptions="Start"
+                         ProgressColor="Red"
+                         Margin="{OnPlatform Android='0,28,0,0',iOS='0,35,0,0'}"/>
+
+                    <!-- CLOSE ICON -->
+            <Label Margin="0,40,20,0"
+			    Style="{ StaticResource IconCloseLabelStyle }"
+			    TextColor="Black">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+					    Tapped="OnCloseButtonClicked" />
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
 </ContentPage>

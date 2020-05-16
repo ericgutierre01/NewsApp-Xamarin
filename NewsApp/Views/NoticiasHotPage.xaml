@@ -1,5 +1,167 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="NewsApp.Views.NoticiasHotPage">
-    <ContentPage.Content>
-    </ContentPage.Content>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewsApp.Views.NoticiasHotPage"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:util="clr-namespace:NewsApp.Util;assembly=NewsApp" 
+             xmlns:local="clr-namespace:NewsApp.Util">
+
+
+    <Grid RowSpacing="0">   
+        <Grid.RowDefinitions>
+            <RowDefinition
+			    Height="280" />
+            <RowDefinition
+			    Height="*" />
+        </Grid.RowDefinitions>
+
+        <BoxView BackgroundColor="{StaticResource NavigationPrimary}" />
+        
+       <!-- CURVED MASK -->
+        <local:CurvedMask
+            MaskColor="#f2f2f2"
+			VerticalOptions="End"/>
+                
+        <!-- PAGE BG -->
+        <BoxView
+			Grid.Row="1"
+			BackgroundColor="#f2f2f2" />
+
+        <StackLayout HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand"
+                     Grid.RowSpan="2">
+            <Grid>
+                <CarouselView x:Name="HotImagenes"
+                              IndicatorView="indicatorView" >
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout HorizontalOptions="FillAndExpand">
+                                <ffimageloading:CachedImage HorizontalOptions="FillAndExpand"
+                                                            VerticalOptions="FillAndExpand"
+                                                            DownsampleToViewSize="False"
+                                                            Aspect="AspectFill"
+                                                            Source = "{Binding ImaPath}"
+                                                            ErrorPlaceholder="nodisponible"
+                                                            LoadingPlaceholder="nodisponible"
+                                                            Margin="7">
+                                    <ffimageloading:CachedImage.HeightRequest>
+                                        <OnIdiom x:TypeArguments="x:Double" Phone="30" Tablet="60" />
+                                    </ffimageloading:CachedImage.HeightRequest>
+                                </ffimageloading:CachedImage>
+
+                            </StackLayout>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+
+                <IndicatorView x:Name="indicatorView"
+                               IndicatorColor="LightGray"
+                               SelectedIndicatorColor="DarkGray"
+                               HorizontalOptions="Center"
+                               VerticalOptions="End"/>
+
+                <Grid x:Name="sindatos_g">
+
+                    <StackLayout VerticalOptions="CenterAndExpand"
+                                 HorizontalOptions="CenterAndExpand">
+                        <Label HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               TextColor="Black"
+                               FontSize="Title"
+                               Text="Sin Datos"/>
+                        <Button BackgroundColor="transparent"
+                                Text="&#xf2f9;"
+                                FontSize="Title"
+			                    FontFamily="{StaticResource FontAwesomeSolid}"
+                                Clicked="Recargar_Clicked"/>
+
+
+                    </StackLayout>
+
+                </Grid>
+
+                <Button x:Name="ver_btn"
+                        Text="Ocultar"
+                        TextColor="Black"
+                        HorizontalOptions="EndAndExpand"
+                        VerticalOptions="EndAndExpand"
+                        Margin="0,0,10,0"
+                        Clicked="Ver_Clicked"/>
+
+            </Grid>
+
+            <ListView x:Name="listaNoticias"
+		                SeparatorVisibility="None"
+                        ItemTapped="OnItemSelected"
+		                HasUnevenRows="True"
+		                CachingStrategy="RecycleElement"
+                        ItemAppearing="ItemAppering"
+		                Margin="0,5"
+                        Grid.RowSpan="2">
+            
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid BackgroundColor="White"
+		                            ColumnSpacing="10"
+		                            Margin="15,6"
+                                    Padding="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="110" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+        
+                                <ffimageloading:CachedImage HorizontalOptions="FillAndExpand"
+                                                            VerticalOptions="FillAndExpand"
+                                                            DownsampleToViewSize="true"
+                                                            Aspect="AspectFill"
+                                                            Source = "{Binding Imagen}"
+			                                                Grid.Column="0"
+                                                            ErrorPlaceholder="nodisponible"
+                                                            HeightRequest="250"
+                                                            WidthRequest="250"
+                                                            LoadingPlaceholder="nodisponible">
+                                    <ffimageloading:CachedImage.HeightRequest>
+                                        <OnIdiom x:TypeArguments="x:Double" Phone="30" Tablet="60" />
+                                    </ffimageloading:CachedImage.HeightRequest>
+                                </ffimageloading:CachedImage>   
+
+                                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"
+                                                Grid.Column="1">
+                                    <Label Text="{Binding Titulo}" TextColor="{StaticResource NavigationPrimary}"
+                                            FontSize="Subtitle" LineBreakMode="TailTruncation" MaxLines="2" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Descripcion}" TextColor="Gray"
+                                            LineBreakMode="TailTruncation" MaxLines="3"/>
+                                    <Label Text="{Binding LinkMostrar}" TextColor="{StaticResource NavigationPrimary}" />
+                                </StackLayout>
+        
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+                <ListView.Footer>
+                        <Label
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        FontAttributes="Italic"
+                        FontSize="Small"
+                        TextColor="Black"
+                        Text="Cargando..."/>
+                </ListView.Footer>
+            </ListView>
+        </StackLayout>
+
+
+        
+        <util:ProgressIndicator x:Name="barr" 
+                        IsVisible="false"  
+                        VerticalOptions="FillAndExpand" 
+                        HorizontalOptions="FillAndExpand"
+                                Grid.RowSpan="2"/>
+    </Grid>
 </ContentPage>

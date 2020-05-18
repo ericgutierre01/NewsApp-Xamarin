@@ -36,6 +36,18 @@ namespace NewsApp.Util
                 case "f06d": f = "\uf06d"; break;
                 case "f434": f = "\uf434"; break;
 
+                case "f79f": f = "\uf79f"; break;
+                case "f3b5": f = "\uf3b5"; break;
+                case "f21e": f = "\uf21e"; break;
+                case "f0a1": f = "\uf0a1"; break;
+                case "f515": f = "\uf515"; break;
+                case "f559": f = "\uf559"; break;
+
+                case "f4b9": f = "\uf4b9"; break;
+                case "f553": f = "\uf553"; break;
+                case "f108": f = "\uf108"; break;
+                case "f53f": f = "\uf53f"; break;
+
 
 
             }

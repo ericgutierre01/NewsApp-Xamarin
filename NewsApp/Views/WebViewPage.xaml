@@ -2,29 +2,119 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewsApp.Views.WebViewPage">
-        <Grid>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Margin="0,5,0,0"
+			           Text="&#xf00d;"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"
+                       FontSize="20"
+                       Grid.Column="0"
+                       FontFamily="{StaticResource FontAwesomeSolid}"
+                       TextColor="Gray"/>
+
+                <Button BackgroundColor="Transparent"
+                        Grid.Column="0"
+                        Clicked="OnCloseButtonClicked"/>
+
+                <Label x:Name="titulo_lb"
+                       MaxLines="1"
+                       LineBreakMode="TailTruncation"
+                       VerticalOptions="Center"
+                       FontSize="20"
+                       Grid.Column="1"/>
+
+                <Label Margin="0,2,0,0"
+			           Text="&#xf142;"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"
+                       FontSize="20"
+                       Grid.Column="2"
+                       FontFamily="{StaticResource FontAwesomeSolid}"
+                       TextColor="Gray"/>
+                <Button BackgroundColor="Transparent"
+                        Grid.Column="2"
+                        Clicked="Abriropciones_Clicked"/>
+            </Grid>
+
             <WebView x:Name="webView"
                      VerticalOptions="FillAndExpand"
                      HorizontalOptions="FillAndExpand"
                      Navigated="webviewNavigated"
                      Navigating="webviewNavigating"
                      BackgroundColor="White"
-                     Margin="{OnPlatform Android='0,30,0,0', iOS='0,25,0,0'}"/>
+                     Grid.Row="1"/>
+
+            <BoxView Color="#bababa"
+                     Grid.Row="1"
+                     HeightRequest="1"
+                     VerticalOptions="StartAndExpand"/>
 
             <ProgressBar HorizontalOptions="FillAndExpand"
                          x:Name="progress_pb"
-                         VerticalOptions="Start"
-                         ProgressColor="Red"
-                         Margin="{OnPlatform Android='0,28,0,0',iOS='0,35,0,0'}"/>
+                         VerticalOptions="StartAndExpand"
+                         ProgressColor="{StaticResource NavigationPrimary}"
+                         Margin="0,-7,0,0"
+                         Grid.Row="1"/>
 
-                    <!-- CLOSE ICON -->
-            <Label Margin="0,40,20,0"
-			    Style="{ StaticResource IconCloseLabelStyle }"
-			    TextColor="Black">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer
-					    Tapped="OnCloseButtonClicked" />
-                </Label.GestureRecognizers>
-            </Label>
+            <Grid x:Name="menu_g"
+                  Grid.RowSpan="2"
+                  IsVisible="false">
+                <Button BackgroundColor="Transparent"
+                        Clicked="Abriropciones_Clicked"/>
+            <Frame HorizontalOptions="EndAndExpand"
+                   VerticalOptions="StartAndExpand"
+                   Margin="0,50,5,0"
+                   Padding="15"
+                   HasShadow="True">
+                    <StackLayout>
+                        <Label Text="Abrir en chrome"
+                               TextColor="Black"
+                               FontSize="18">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="AbrirNavegador"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <BoxView Color="LightGray"
+                                 HorizontalOptions="FillAndExpand"
+                                 HeightRequest="1"/>
+                        <Label Text="Copiar enlace"
+                               TextColor="Black"
+                               FontSize="18">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="CopiarEncale"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <BoxView Color="LightGray"
+                                 HorizontalOptions="FillAndExpand"
+                                 HeightRequest="1"/>
+                        <Label Text="Compartir mediante..."
+                               TextColor="Black"
+                               FontSize="18">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="CompartirEnlace"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                    </StackLayout>
+                </Frame>
+
+
+            </Grid>
+
         </Grid>
 </ContentPage>

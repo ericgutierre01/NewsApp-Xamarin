@@ -97,7 +97,7 @@ namespace NewsApp.Views
                 return;
             }
             Noticia noti = e.Item as Noticia;
-            await Navigation.PushModalAsync(new WebViewPage(noti.Link));
+            await Navigation.PushModalAsync(new WebViewPage(noti));
             listaNoticias.SelectedItem = null;
             barr.IsVisible = false;
 

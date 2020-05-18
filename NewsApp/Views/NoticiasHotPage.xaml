@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewsApp.Views.NoticiasHotPage"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:util="clr-namespace:NewsApp.Util;assembly=NewsApp" 
              xmlns:local="clr-namespace:NewsApp.Util">
 
@@ -91,55 +92,56 @@
             </Grid>
 
             <ListView x:Name="listaNoticias"
-		                SeparatorVisibility="None"
-                        ItemTapped="OnItemSelected"
-		                HasUnevenRows="True"
-		                CachingStrategy="RecycleElement"
-                        ItemAppearing="ItemAppering"
-		                Margin="0,5"
-                        Grid.RowSpan="2">
+		            SeparatorVisibility="None"
+                    ItemTapped="OnItemSelected"
+		            HasUnevenRows="True"
+		            CachingStrategy="RecycleElement"
+                    ItemAppearing="ItemAppering"
+                    Grid.RowSpan="2">
             
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid BackgroundColor="White"
-		                            ColumnSpacing="10"
-		                            Margin="15,6"
-                                    Padding="5">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto" />
-                                </Grid.RowDefinitions>
+                            <Frame HasShadow="True"
+                                    VerticalOptions="FillAndExpand"
+                                    HorizontalOptions="FillAndExpand"
+                                    Margin="13,0,13,10"
+                                    Padding="10,5,5,5"
+                                    CornerRadius="15">
+                                <Grid ColumnSpacing="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                    </Grid.RowDefinitions>
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="110" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-        
-                                <ffimageloading:CachedImage HorizontalOptions="FillAndExpand"
-                                                            VerticalOptions="FillAndExpand"
-                                                            DownsampleToViewSize="true"
-                                                            Aspect="AspectFill"
-                                                            Source = "{Binding Imagen}"
-			                                                Grid.Column="0"
-                                                            ErrorPlaceholder="nodisponible"
-                                                            HeightRequest="250"
-                                                            WidthRequest="250"
-                                                            LoadingPlaceholder="nodisponible">
-                                    <ffimageloading:CachedImage.HeightRequest>
-                                        <OnIdiom x:TypeArguments="x:Double" Phone="30" Tablet="60" />
-                                    </ffimageloading:CachedImage.HeightRequest>
-                                </ffimageloading:CachedImage>   
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
 
-                                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"
-                                                Grid.Column="1">
-                                    <Label Text="{Binding Titulo}" TextColor="{StaticResource NavigationPrimary}"
-                                            FontSize="Subtitle" LineBreakMode="TailTruncation" MaxLines="2" FontAttributes="Bold"/>
-                                    <Label Text="{Binding Descripcion}" TextColor="Gray"
-                                            LineBreakMode="TailTruncation" MaxLines="3"/>
-                                    <Label Text="{Binding LinkMostrar}" TextColor="{StaticResource NavigationPrimary}" />
-                                </StackLayout>
-        
-                            </Grid>
+                                    <ffimageloading:CachedImage HorizontalOptions="Center"
+                                                                VerticalOptions="Center"
+                                                                DownsampleToViewSize="true"
+                                                                Source = "{Binding Imagen}"
+			                                                    Grid.Column="0"
+                                                                ErrorPlaceholder="nodisponible"
+                                                                HeightRequest="110"
+                                                                WidthRequest="110"
+                                                                LoadingPlaceholder="nodisponible">
+                                        <ffimageloading:CachedImage.Transformations>
+                                            <ffTransformations:RoundedTransformation Radius="40" />
+                                        </ffimageloading:CachedImage.Transformations>
+                                    </ffimageloading:CachedImage>   
+
+                                    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"
+                                                    Grid.Column="1" Spacing="1">
+                                        <Label Text="{Binding Titulo}" TextColor="{StaticResource NavigationPrimary}"
+                                                FontSize="Subtitle" LineBreakMode="TailTruncation" MaxLines="2" FontAttributes="Bold"/>
+                                        <Label Text="{Binding Descripcion}" TextColor="Gray"
+                                                LineBreakMode="TailTruncation" MaxLines="3"/>
+                                        <Label Text="{Binding LinkMostrar}" TextColor="{StaticResource NavigationPrimary}" />
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -154,6 +156,7 @@
                         Text="Cargando..."/>
                 </ListView.Footer>
             </ListView>
+
         </StackLayout>
 
 

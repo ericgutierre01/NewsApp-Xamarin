@@ -10,7 +10,7 @@
     <Grid RowSpacing="0">   
         <Grid.RowDefinitions>
             <RowDefinition
-			    Height="170" />
+			    Height="125" />
             <RowDefinition
 			    Height="*" />
         </Grid.RowDefinitions>
@@ -33,63 +33,52 @@
 		            HasUnevenRows="True"
 		            CachingStrategy="RecycleElement"
                     ItemAppearing="ItemAppering"
-		            Margin="0,0"
                     Grid.RowSpan="2">
             
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid ColumnSpacing="10"
-		                      Margin="13,4,13,2"
-                              Padding="5">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
+                        <Frame HasShadow="True"
+                               VerticalOptions="FillAndExpand"
+                               HorizontalOptions="FillAndExpand"
+                               Margin="13,0,13,10"
+                               Padding="10,5,5,5"
+                               CornerRadius="15">
+                            <Grid ColumnSpacing="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
 
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="110" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="110" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
 
-                            <BoxView Color="White"
-                                     Margin="-8,-3,-8,-2"
-                                     CornerRadius="20"
-                                     Grid.ColumnSpan="2"/>
-                            <ffimageloading:CachedImage HorizontalOptions="Center"
-                                                        VerticalOptions="Center"
-                                                        DownsampleToViewSize="true"
-                                                        Source = "{Binding Imagen}"
-			                                            Grid.Column="0"
-                                                        ErrorPlaceholder="nodisponible"
-                                                        HeightRequest="110"
-                                                        WidthRequest="110"
-                                                        LoadingPlaceholder="nodisponible">
-                                <ffimageloading:CachedImage.Transformations>
-                                    <ffTransformations:RoundedTransformation Radius="40" />
-                                </ffimageloading:CachedImage.Transformations>
-                            </ffimageloading:CachedImage>   
+                                <ffimageloading:CachedImage HorizontalOptions="Center"
+                                                            VerticalOptions="Center"
+                                                            DownsampleToViewSize="true"
+                                                            Source = "{Binding Imagen}"
+			                                                Grid.Column="0"
+                                                            ErrorPlaceholder="nodisponible"
+                                                            HeightRequest="110"
+                                                            WidthRequest="110"
+                                                            LoadingPlaceholder="nodisponible">
+                                    <ffimageloading:CachedImage.Transformations>
+                                        <ffTransformations:RoundedTransformation Radius="40" />
+                                    </ffimageloading:CachedImage.Transformations>
+                                </ffimageloading:CachedImage>   
 
-                            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"
-                                            Grid.Column="1" Spacing="1">
-                                <Label Text="{Binding Titulo}" TextColor="{StaticResource NavigationPrimary}"
-                                        FontSize="Subtitle" LineBreakMode="TailTruncation" MaxLines="2" FontAttributes="Bold"/>
-                                <Label Text="{Binding Descripcion}" TextColor="Gray"
-                                        LineBreakMode="TailTruncation" MaxLines="3"/>
-                                <Label Text="{Binding LinkMostrar}" TextColor="{StaticResource NavigationPrimary}" />
-                            </StackLayout>
+                                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"
+                                                Grid.Column="1" Spacing="1">
+                                    <Label Text="{Binding Titulo}" TextColor="{StaticResource NavigationPrimary}"
+                                            FontSize="Subtitle" LineBreakMode="TailTruncation" MaxLines="2" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Descripcion}" TextColor="Gray"
+                                            LineBreakMode="TailTruncation" MaxLines="3"/>
+                                    <Label Text="{Binding LinkMostrar}" TextColor="{StaticResource NavigationPrimary}" />
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
 
-                            <!-- CHEVRON 
-                            <Label Grid.Row="0"
-			                        Grid.RowSpan="2"
-			                        Grid.Column="2"
-			                        WidthRequest="20"
-                                    VerticalOptions="Center"
-			                        HorizontalOptions="Center"
-			                        TextColor="{Binding colorr, Source={x:Reference OfertasPages}}"
-			                        Text="&#xf054;"
-			                        FontFamily="{StaticResource FontAwesomeSolid}"  /> -->
-        
-                        </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

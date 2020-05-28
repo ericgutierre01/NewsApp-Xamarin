@@ -37,7 +37,7 @@
                                             VerticalOptions="Center"
                                             WidthRequest="110" 
                                             HeightRequest="110"
-                                            Source="nodisponible"
+                                            Source="logo"
                                             DownsampleToViewSize="true"
                                             Grid.Row="1"
                                             x:Name="avatar_im">

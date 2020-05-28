@@ -7,15 +7,13 @@
              x:Class="NewsApp.Views.NoticiasPage"
              xmlns:local="clr-namespace:NewsApp.Util">
 
-    <Grid RowSpacing="0">   
+    <Grid RowSpacing="0"> 
         <Grid.RowDefinitions>
-            <RowDefinition
-			    Height="125" />
-            <RowDefinition
-			    Height="*" />
+            <RowDefinition Height="125" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <BoxView BackgroundColor="{StaticResource NavigationPrimary}" />
+        <BoxView BackgroundColor="{StaticResource NavigationPrimary}"/>
         
        <!-- CURVED MASK -->
         <local:CurvedMask
@@ -28,12 +26,12 @@
 			BackgroundColor="#f2f2f2" />
 
         <ListView x:Name="listaNoticias"
-		            SeparatorVisibility="None"
-                    ItemTapped="OnItemSelected"
-		            HasUnevenRows="True"
-		            CachingStrategy="RecycleElement"
-                    ItemAppearing="ItemAppering"
-                    Grid.RowSpan="2">
+		          SeparatorVisibility="None"
+                  ItemTapped="OnItemSelected"
+		          HasUnevenRows="True"
+		          CachingStrategy="RecycleElement"
+                  ItemAppearing="ItemAppering"
+                  Grid.RowSpan="2">
             
             <ListView.ItemTemplate>
                 <DataTemplate>

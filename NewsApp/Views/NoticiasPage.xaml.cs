@@ -20,12 +20,10 @@ namespace NewsApp.Views
             topic = topi;
             Iniciador();
             Title = topi;
-
         }
 
         public NoticiasPage()
         {
-            
             topic = "a";
             Iniciador();
             Title = "Hoy";
